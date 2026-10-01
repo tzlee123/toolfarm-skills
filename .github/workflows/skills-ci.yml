@@ -44,6 +44,24 @@ jobs:
       - name: Smoke test
         run: node skills/agent-skill-registry-snapshot-drift-checker/scripts/smoke-test.mjs
 
+  credential-boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Syntax check
+        run: node --check skills/ai-sdk-credential-boundary-preflight/scripts/check-credential-boundary.mjs
+
+      - name: Smoke test
+        run: node skills/ai-sdk-credential-boundary-preflight/scripts/smoke-test.mjs
+
   discovery:
     runs-on: ubuntu-latest
     timeout-minutes: 8
@@ -54,3 +72,4 @@ jobs:
           npx -y skills add tzlee123/toolfarm-skills --list | tee /tmp/toolfarm-skills-list.txt
           grep -q "agent-skill-precedence-preflight" /tmp/toolfarm-skills-list.txt
           grep -q "agent-skill-registry-snapshot-drift-checker" /tmp/toolfarm-skills-list.txt
+          grep -q "ai-sdk-credential-boundary-preflight" /tmp/toolfarm-skills-list.txt
