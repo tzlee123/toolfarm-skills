@@ -4,13 +4,19 @@ Public developer utilities from [Toolfarm](https://www.toolfarm.app/?utm_source=
 
 ## Agent Skills
 
-Install an individual skill with the `skills` CLI:
+Toolfarm supports two discovery paths:
 
 ```bash
+# Discover the site-native Skill catalog directly from toolfarm.app
+npx skills@latest add https://www.toolfarm.app --list
+
+# Install an executable Skill from the public GitHub source
 npx skills add tzlee123/toolfarm-skills@agent-skill-precedence-preflight
 npx skills add tzlee123/toolfarm-skills@agent-skill-registry-snapshot-drift-checker
 npx skills add tzlee123/toolfarm-skills@ai-sdk-credential-boundary-preflight
 ```
+
+The domain discovery path is backed by Toolfarm's production Agent Skills index at `https://www.toolfarm.app/.well-known/agent-skills/index.json`. CI verifies that the public `skills` CLI can discover all current site-native Skills from the domain without performing synthetic installs.
 
 ### `agent-skill-precedence-preflight`
 
