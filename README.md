@@ -1,8 +1,8 @@
 # Toolfarm Skills
 
-Public Agent Skills from [Toolfarm](https://www.toolfarm.app/?utm_source=github&utm_medium=skill-registry&utm_campaign=toolfarm_skills), focused on narrow, deterministic developer workflows that have survived Toolfarm's Trend Capture / Surface Radar review.
+Public developer utilities from [Toolfarm](https://www.toolfarm.app/?utm_source=github&utm_medium=skill-registry&utm_campaign=toolfarm_skills), focused on narrow, deterministic workflows that have survived Toolfarm's Trend Capture / Surface Radar review.
 
-## Install
+## Agent Skills
 
 Install an individual skill with the `skills` CLI:
 
@@ -11,8 +11,6 @@ npx skills add tzlee123/toolfarm-skills@agent-skill-precedence-preflight
 npx skills add tzlee123/toolfarm-skills@agent-skill-registry-snapshot-drift-checker
 npx skills add tzlee123/toolfarm-skills@ai-sdk-credential-boundary-preflight
 ```
-
-## Available skills
 
 ### `agent-skill-precedence-preflight`
 
@@ -58,8 +56,25 @@ Source: `skills/ai-sdk-credential-boundary-preflight/`
 
 Web companion: [AI SDK Credential Boundary Preflight](https://www.toolfarm.app/en/p/ai-sdk-credential-boundary-preflight?utm_source=github&utm_medium=skill-registry&utm_campaign=ai_sdk_credential_boundary)
 
+## GitHub Actions
+
+### `codex-action-safety-preflight`
+
+Preflight workflows using `openai/codex-action` before the Codex Action step runs.
+
+```yaml
+- name: Preflight Codex Action configuration
+  uses: tzlee123/toolfarm-skills/actions/codex-action-safety-preflight@main
+```
+
+It detects mutually exclusive inputs and narrow high-risk settings such as `permission-profile + sandbox`, wildcard `allow-users`, and `safety-strategy: unsafe`. It does not read secret values and is not a general GitHub Actions security scanner.
+
+Source: `actions/codex-action-safety-preflight/`
+
+Web companion: [Codex Action Safety Preflight](https://www.toolfarm.app/en/p/codex-action-safety-preflight?utm_source=github&utm_medium=github-action&utm_campaign=codex_action_safety)
+
 ## Distribution policy
 
-This repository is intentionally selective. Toolfarm does not publish generic wrappers simply because a platform or protocol is trending. Skills are added only when a concrete workflow failure survives competition and distribution review.
+This repository is intentionally selective. Toolfarm does not publish generic wrappers simply because a platform or protocol is trending. New surfaces are added only when a concrete workflow failure survives competition and distribution review.
 
 Toolfarm web utilities remain available at [toolfarm.app](https://www.toolfarm.app/?utm_source=github&utm_medium=skill-registry&utm_campaign=toolfarm_skills).
