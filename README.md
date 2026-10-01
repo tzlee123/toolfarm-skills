@@ -8,6 +8,7 @@ Install an individual skill with the `skills` CLI:
 
 ```bash
 npx skills add tzlee123/toolfarm-skills@agent-skill-precedence-preflight
+npx skills add tzlee123/toolfarm-skills@agent-skill-registry-snapshot-drift-checker
 ```
 
 ## Available skills
@@ -26,6 +27,21 @@ Detect duplicate Agent Skill names across project and user roots before they pro
 Source: `skills/agent-skill-precedence-preflight/`
 
 Web companion: [Agent Skill Precedence Collision Preflight](https://www.toolfarm.app/en/p/agent-skill-precedence-collision-preflight?utm_source=github&utm_medium=skill-registry&utm_campaign=agent_skill_precedence)
+
+### `agent-skill-registry-snapshot-drift-checker`
+
+Compare a current Agent Skill source folder with a registry snapshot and produce deterministic evidence for stale registry/reindex debugging.
+
+- compares full text file trees, not only metadata
+- reports missing, extra, and changed files separately
+- computes local SHA-256 fingerprints for both snapshots
+- supports offline registry JSON or a skills.sh registry ID
+- never uploads the local source folder
+- supports JSON output and CI failure mode
+
+Source: `skills/agent-skill-registry-snapshot-drift-checker/`
+
+Web companion: [Agent Skill Registry Snapshot Drift Checker](https://www.toolfarm.app/en/p/agent-skill-registry-snapshot-drift-checker?utm_source=github&utm_medium=skill-registry&utm_campaign=agent_skill_registry_drift)
 
 ## Distribution policy
 
