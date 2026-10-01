@@ -9,6 +9,7 @@ Install an individual skill with the `skills` CLI:
 ```bash
 npx skills add tzlee123/toolfarm-skills@agent-skill-precedence-preflight
 npx skills add tzlee123/toolfarm-skills@agent-skill-registry-snapshot-drift-checker
+npx skills add tzlee123/toolfarm-skills@ai-sdk-credential-boundary-preflight
 ```
 
 ## Available skills
@@ -42,6 +43,20 @@ Compare a current Agent Skill source folder with a registry snapshot and produce
 Source: `skills/agent-skill-registry-snapshot-drift-checker/`
 
 Web companion: [Agent Skill Registry Snapshot Drift Checker](https://www.toolfarm.app/en/p/agent-skill-registry-snapshot-drift-checker?utm_source=github&utm_medium=skill-registry&utm_campaign=agent_skill_registry_drift)
+
+### `ai-sdk-credential-boundary-preflight`
+
+Scan AI SDK / agent source for credential-bearing headers placed close to dynamic or externally controlled request URLs.
+
+- read-only local static analysis
+- no network requests
+- does not read environment-variable values
+- reports only file, line and rule metadata — not credential values or source snippets
+- supports JSON output and CI failure mode
+
+Source: `skills/ai-sdk-credential-boundary-preflight/`
+
+Web companion: [AI SDK Credential Boundary Preflight](https://www.toolfarm.app/en/p/ai-sdk-credential-boundary-preflight?utm_source=github&utm_medium=skill-registry&utm_campaign=ai_sdk_credential_boundary)
 
 ## Distribution policy
 
