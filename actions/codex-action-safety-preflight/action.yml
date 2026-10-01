@@ -1,0 +1,24 @@
+name: Codex Action Safety Preflight
+description: Check openai/codex-action workflow inputs for conflicting or high-risk settings before the action runs.
+author: Toolfarm
+branding:
+  icon: shield
+  color: blue
+inputs:
+  path:
+    description: Workflow file or directory to scan.
+    required: false
+    default: .github/workflows
+  fail-on-warning:
+    description: Exit non-zero when warnings are found as well as errors.
+    required: false
+    default: "false"
+runs:
+  using: composite
+  steps:
+    - name: Scan Codex Action configuration
+      shell: bash
+      env:
+        TOOLFARM_CODEX_PREFLIGHT_PATH: ${{ inputs.path }}
+        TOOLFARM_CODEX_PREFLIGHT_FAIL_ON_WARNING: ${{ inputs.fail-on-warning }}
+      run: node "$GITHUB_ACTION_PATH/scripts/check-codex-action.mjs"
