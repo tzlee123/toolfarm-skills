@@ -33,3 +33,5 @@ node scripts/check-precedence.mjs --fail-on-collision \
 ```
 
 The checker is read-only and makes no network requests.
+
+Web companion: [Toolfarm Agent Skill Precedence Collision Preflight](https://www.toolfarm.app/en/p/agent-skill-precedence-collision-preflight?utm_source=github&utm_medium=skill-registry&utm_campaign=agent_skill_precedence)
