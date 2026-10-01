@@ -76,10 +76,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
-      - name: Verify skills CLI discovery
+      - name: Verify skills CLI GitHub discovery
         shell: bash
         run: |
           npx -y skills add tzlee123/toolfarm-skills --list | tee /tmp/toolfarm-skills-list.txt
           grep -q "agent-skill-precedence-preflight" /tmp/toolfarm-skills-list.txt
           grep -q "agent-skill-registry-snapshot-drift-checker" /tmp/toolfarm-skills-list.txt
           grep -q "ai-sdk-credential-boundary-preflight" /tmp/toolfarm-skills-list.txt
+
+  domain-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verify Toolfarm domain Agent Skills discovery
+        shell: bash
+        run: |
+          npx -y skills@latest add https://www.toolfarm.app --list | tee /tmp/toolfarm-domain-skills.txt
+          grep -q "agent-skill-precedence-preflight" /tmp/toolfarm-domain-skills.txt
+          grep -q "agent-skill-registry-snapshot-drift-checker" /tmp/toolfarm-domain-skills.txt
+          grep -q "ai-sdk-credential-boundary-preflight" /tmp/toolfarm-domain-skills.txt
+          grep -q "codex-action-safety-preflight" /tmp/toolfarm-domain-skills.txt
