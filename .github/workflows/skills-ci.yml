@@ -14,15 +14,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-
       - name: Syntax check
         run: node --check skills/agent-skill-precedence-preflight/scripts/check-precedence.mjs
-
       - name: Smoke test
         run: node skills/agent-skill-precedence-preflight/scripts/smoke-test.mjs
 
@@ -32,15 +29,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-
       - name: Syntax check
         run: node --check skills/agent-skill-registry-snapshot-drift-checker/scripts/check-registry-drift.mjs
-
       - name: Smoke test
         run: node skills/agent-skill-registry-snapshot-drift-checker/scripts/smoke-test.mjs
 
@@ -50,17 +44,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-
       - name: Syntax check
         run: node --check skills/ai-sdk-credential-boundary-preflight/scripts/check-credential-boundary.mjs
-
       - name: Smoke test
         run: node skills/ai-sdk-credential-boundary-preflight/scripts/smoke-test.mjs
+
+  codex-action-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check actions/codex-action-safety-preflight/scripts/check-codex-action.mjs
+      - name: Smoke test
+        run: node actions/codex-action-safety-preflight/scripts/smoke-test.mjs
+      - name: Composite action smoke test
+        uses: ./actions/codex-action-safety-preflight
+        with:
+          path: .github/workflows
 
   discovery:
     runs-on: ubuntu-latest
